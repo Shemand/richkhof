@@ -1,0 +1,67 @@
+<div class="stage registration">
+	<form action="">
+		<div class="caption">Если Вы уже зарегистрированы, перейдите по вкладке Войти в меню слева.
+		</div>
+		<div class="header">Основные данные</div>
+		<span class="denied text-center mb-2"><ul id="reg_messages"></ul></span>
+
+		<div class="input">
+			<div class="title">Имя</div>
+			<input id="reg_first_name" type="text" placeholder="Имя">
+		</div>
+		<div class="input">
+			<div class="title">Фамилия</div>
+			<input id="reg_second_name" type="text" placeholder="Фамилия">
+		</div>
+		<div class="input">
+			<div class="title">Почта</div>
+			<input id="reg_email" type="text" placeholder="Почта">
+		</div>
+		<div class="input">
+			<div class="title">Телефон</div>
+			<input id="reg_phone_number" type="text" placeholder="Телефон">
+		</div>
+		<div class="input">
+			<div class="title">Организация</div>
+			<div id="organization_frame" style="width: 47.3%;">
+				<input id="reg_input_organization" hidden style="width:100%;" type="text" placeholder="Название ораганизации">
+				{% if user_role == 'super_admin' %}
+				<select id="reg_select_organization" class="selectOrg" size="1" name="hero[]">
+					<option selected disabled value="org">Выбрать организацию</option>
+				</select>
+				{% endif %}
+				{% if user_role == 'admin' %}
+				<select id="reg_select_organization" disabled class="selectOrg" size="1" name="hero[]">
+					<option selected disabled value="{{ organization_name}}">{{ organization_name}}</option>
+				</select>
+				{% endif %}
+			</div>
+			{% if user_role == 'super_admin' %}
+			<div class="title newOrg">Новая организация</div>
+				<input id="reg_new_org" style="width: auto; height: auto;" type="checkbox" name="option1" value="a1">
+			{% else %}
+			<div class="title newOrg"><span>                                          </span></div>
+				<div></div>
+			{% endif %}
+		</div>
+		{% if user_role == 'super_admin' %}
+		<div class="input">
+			<div class="title newOrg">Администратор от организации</div>
+			<input id="reg_like_admin" style="width: auto; height: auto;" type="checkbox" name="option1"
+				   value="a1">
+		</div>
+		{% endif %}
+		<div class="header">Ваш пароль</div>
+		<div class="input">
+			<div class="title">Пароль</div>
+			<input id="reg_password" type="password" placeholder="Введите пароль">
+		</div>
+		<div class="input">
+			<div class="title">Подтверждение</div>
+			<input id="reg_confirm_password" type="password" placeholder="Подтвердите пароль">
+		</div>
+		<div class="buttons">
+			<button id="reg_submit" class="button black-button">Завершить регистрацию</button>
+		</div>
+	</form>
+</div>

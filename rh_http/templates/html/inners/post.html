@@ -1,0 +1,18 @@
+<div class="stage table-stage10">
+	<div class="row">
+		<div class="col text-center">
+			<h4 style="font-family: 'Montserrat-SemiBold';">{{ article.title }}</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<div style="word-break: break-all;">{{ article.text | safe }}</div>
+		</div>
+	</div>
+	<div class="row" style="padding-top: 2rem;">
+		<div class="col-5 mb-1"></div>
+		<input class="col-4" type="text" id="post_url" readonly>
+		<input class="col-3 black black-button" type="button" id="post_url_copy" value="Скопировать адрес">
+	</div>
+
+</div>

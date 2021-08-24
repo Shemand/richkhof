@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='libs/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='libs/css/jquery.fancybox.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='libs/css/slick.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='libs/css/slick-theme.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='libs/css/jquery.cleditor.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='libs/css/tabulator.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='libs/css/tabulator_bootstrap4.min.css') }}">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+
+	<title>Главная</title>
+</head>
+<body>
+{% if show_post %}<div id="show_post" data-post="{{show_post}}"></div>{% endif %}
+<header>
+	<div class="container">
+		<div class="wrapper">
+			<a href="#">
+				<div class="logo"></div>
+			</a>
+			<div class="inner">
+				<div class="contacts">
+					<div class="item">
+						<div class="icon phone-icon"></div>
+						<a href="">(812) 985-84-14</a>
+					</div>
+					<div class="separator"></div>
+					<div class="item">
+						<div class="icon mail-icon"></div>
+						<a href="">info@richhof.ru</a>
+					</div>
+				</div>
+				<div id="search_block">
+					<input type="text" id="search_input" placeholder="Текст поиска">
+					<input type="button" id="search_submit" class="button black-button" value="Поиск" style="margin:0px 20px 0px 3px; height: 28.3px; line-height: 10px;">
+				</div>
+			    {% if not user_role %}
+				<a href="#auth-modal" id="auth" class="button black-button">Войти</a>
+				<div id="auth-modal" style="display:none"></div>
+			    {% else %}
+					<a href="#auth-modal" id="logout" class="button black-button">Выйти</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</header>
+<section class="main">
+	<div class="container">
+		<div class="wrapper">
+			<div class="sidebar">
+				<div class="header">
+				</div>
+				<div class="accordion" id="accordionExample">
+					<div class="card">
+						<div class="card-header" id="headingOne">
+							<a href="#">
+								<button id="nav_main_button" class="button firstLvlBtn menuActive" type="button" data-toggle="collapse"
+										data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									Главная
+								</button>
+							</a>
+						</div>
+
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+							 data-parent="#accordionExample">
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header" id="headingFour">
+							<button id="nav_study_button" class="button firstLvlBtn " type="button" data-toggle="collapse"
+									data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+								Обучение
+							</button>
+						</div>
+
+						<div id="collapseFour" class="collapse " aria-labelledby="headingFour"
+							 data-parent="#accordionExample">
+							<div class="accordion" id="accordion2">
+								{% for study in studies %}
+								<div id="nav_categories_container" class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle item button" data-toggle="collapse"
+										   data-parent="#accordion2" href="#collapseInner_xi{{ loop.index }}">
+											{{ study }}
+										</a>
+									</div>
+									<div id="collapseInner_xi{{ loop.index }}" class="accordion-body collapse in">
+										<div class="accordion-inner">
+											{% for post in studies[study] %}
+												<a href="{{ post.post_id }}" class="accordion-link nav_posts">{{ post.post_title }}</a>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingNews">
+							<button id="nav_news_button" class="button firstLvlBtn " type="button" data-toggle="collapse"
+									data-target="#collapseNews" aria-expanded="true" aria-controls="collapseNews">
+								Новости
+							</button>
+						</div>
+
+						<div id="collapseNews" class="collapse " aria-labelledby="headingNews"
+							 data-parent="#accordionExample">
+							<div class="accordion" id="accordionNews">
+								{% for new in news %}
+								<div id="nav_news_container" class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle item button" data-toggle="collapse"
+										   data-parent="#accordionNews" href="#collapseInner_xin{{ loop.index }}">
+											{{ new }}
+										</a>
+									</div>
+									<div id="collapseInner_xin{{ loop.index }}" class="accordion-body collapse in">
+										<div class="accordion-inner">
+											{% for post in news[new] %}
+												<a href="{{ post.post_id }}" class="accordion-link nav_posts">{{ post.post_title }}</a>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwo">
+							<button id="simple_tests" class="button firstLvlBtn " type="button" data-toggle="collapse"
+									data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+								Подготовительные тесты
+							</button>
+						</div>
+
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+							 data-parent="#accordionExample">
+
+
+						</div>
+					</div>
+					{% if username %}
+					<div class="card">
+						<div class="card-header" id="headingThree">
+							<button id="control_tests" class="button firstLvlBtn " type="button" data-toggle="collapse"
+									data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+								Тесты проверки знаний
+							</button>
+						</div>
+
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+							 data-parent="#accordionExample">
+
+						</div>
+					</div>
+					{% endif%}
+					{%	 if user_role == 'admin' or user_role == 'super_admin' %}
+					<div class="card">
+						<div class="card-header" id="headingFive">
+							<button class="button firstLvlBtn " type="button" data-toggle="collapse"
+									data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+								Админ. панель
+							</button>
+						</div>
+
+						<div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+							 data-parent="#accordionExample">
+
+							<button id="nav_users_button" class="button item menuItem" type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Пользователи
+							</button>
+							<button id="nav_archive_users_button" class="button item menuItem" type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Архив пользователей
+							</button>
+							{% if user_role == 'super_admin' %}
+							<button id="nav_organizations_button" class="button item menuItem" type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Организации
+							</button>
+							{% endif%}
+							{% if user_role == 'super_admin' %}
+							<button id="nav_archive_organizations_button" class="button item menuItem" type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Архив организаций
+							</button>
+							{% endif %}
+							{% if False %}
+							<button id="nav_tests_button" class="button item menuItem" type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Тесты
+							</button>
+							{% endif %}
+							<button id="nav_study_categories_button" class="button item menuItem " type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Категории
+							</button>
+							<button id="nav_images_button" class="button item menuItem " type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Изображения
+							</button>
+							<button id="nav_catalog_tests_button" class="button item menuItem " type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Каталог тестов
+							</button>
+							<button id="nav_catalog_posts_button" class="button item menuItem " type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Каталог статей
+							</button>
+							{% if user_role == 'super_admin' %}
+							<button id="nav_slider_button" class="button item menuItem " type="button" data-toggle="collapse"
+									data-target="" aria-expanded="true" aria-controls="">
+								Управление слайдером
+							</button>
+							{% endif %}
+						</div>
+					</div>
+					{% endif %}
+				</div>
+				<button id="feedback_page" class="button black-button">Обратная связь</button>
+				{% if user_role == 'admin' or user_role == 'super_admin' %}
+				<button id="reg" class="button black-button">Зарегистрировать</button>
+				{% endif %}
+				{% if user_role %}
+				<span>Вы авторизированны как <b>{{ username }}</b></span>
+				{% endif %}
+			</div>
+			<div id="main_content" class="content"></div>
+		</div>
+	</div>
+</section>
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-3">
+				<h3>Обучение</h3>
+				<ul>
+					{% for id in footer['study_first'] %}
+						<li><a href="{{ id }}" class="link footer_post_link">{{ footer['study_first'][id] }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-3">
+				<br>
+				<ul>
+					{% for id in footer['study_second'] %}
+						<li><a href="{{ id }}" class="link footer_post_link">{{ footer['study_second'][id] }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-3">
+				<h3>Подготовительные тесты</h3>
+				<ul>
+					{% for id in footer['tests'] %}
+						<li><a href="{{ id }}" class="link footer_test_link">{{ footer['tests'][id] }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-3">
+				<h3>Новости</h3>
+				<ul>
+					{% for id in footer['news'] %}
+						<li><a href="{{ id }}" class="link footer_post_link">{{ footer['news'][id] }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="bottom">
+			<img src="{{ url_for('static', filename='imgs/logo-white.png') }}" alt="" class="logo">
+			<div class="info">
+				<a href="info@richhof.ru" class="mail">info@richhof.ru</a>&nbsp;<a href="" class="phone">+7 (812)
+				985-84-14</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<script src="{{ url_for('static', filename='libs/js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='libs/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='libs/js/jquery.fancybox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='libs/js/slick.min.js') }}"></script>
+<script src="{{ url_for('static', filename='libs/js/jquery.cleditor.min.js') }}"></script>
+<script src="{{ url_for('static', filename='libs/js/axios.min.js') }}"></script>
+<script src="{{ url_for('static', filename='libs/js/tabulator-4.1.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cookies_functions.js') }}"></script>
+
+
+<script src="{{ url_for('static', filename='js/dynamic.js') }}"></script>
+<script src="{{ url_for('static', filename='js/slider.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modal-popup.js') }}"></script>
+<script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tabulatoCust.js') }}"></script>
+<script src="{{ url_for('static', filename='js/requests.js') }}"></script>
+
+</body>
+</html>

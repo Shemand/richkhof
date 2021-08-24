@@ -1,0 +1,100 @@
+<div class="stage table-stage6 ">
+	<div class="row mb-3">
+		<div class="col text-center">
+			<h4 id="create_test_caption" style="font-family: 'Montserrat-SemiBold';">Создать тест</h4>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="example-text-input" class="col-3 col-form-label">Название теста</label>
+		<div class="col-9">
+			<input class="form-control" type="text" value="" placeholder="Введите название"
+				   id="test_title">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="example-text-input" class="col-3 col-form-label">Описание теста</label>
+		<div class="col-9">
+			<input class="form-control" type="text" value="" placeholder="Введите описание"
+				   id="test_description">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-3 col-form-label" for="exampleSelect1">Категория теста</label>
+		<div class="col-9">
+			<select class="form-control" id="test_category">
+			</select>
+		</div>
+	</div>
+	<fieldset id="block_test_important" class="form-group row">
+		<label class="col-3 col-form-label" for="exampleSelect1">Важность</label>
+		<div class="col-9">
+			<div class="form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="radio" name="gridRadios" id="test_notImportant"
+						   value="notImportant" checked>
+					Подготовительный тест
+				</label>
+			</div>
+			<div class="form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="radio" name="gridRadios" id="test_important"
+						   value="important">
+					Тест проверки знаний
+				</label>
+			</div>
+
+		</div>
+	</fieldset>
+	<div class="form-group row">
+		<label class="col-3 col-form-label" for="exampleSelect1">Выберите аудиторию</label>
+		<div class="col-9">
+			<select class="form-control " id="test_audience">
+				<option>Общий тест</option>
+				<option>ООО "НормМебель"</option>
+			</select>
+		</div>
+	</div>
+	<div id="block_test_status" class="form-group row mb-5 ">
+		<label class="col-3 col-form-label pr-0" for="exampleSelect1">Статус теста</label>
+		<div class="col-9">
+			<select class="form-control " id="test_status">
+				<option value="notFree">Закрыт. Доступ по назначению администратором</option>
+				<option value="free">Открыт для всех</option>
+			</select>
+		</div>
+	</div>
+	<div id="block_test_tradable" class="form-group row mb-5 ">
+		<label class="col-3 col-form-label pr-0" for="exampleSelect1">Статус теста</label>
+		<div class="col-9">
+			<select class="form-control " id="test_tradable">
+				<option value="tradable">Другие организации могут использоватеть этот тест</option>
+				<option value="notTradable">Тест может использовать только эта организация</option>
+			</select>
+		</div>
+	</div>
+	<div id="block_test_expired" class="form-group row mb-5 ">
+		<label for="example-text-input" class="col-3 col-form-label">Время выполнения</label>
+		<div class="col-1 pr-0"><input id="test_expired_activate" class="mt-2" type="checkbox"></div>
+		<div class="col-6 pl-0"><input id="test_expired_range" disabled class="d-inline-block form-control" type="range" value="0" min="1" max="60"></div>
+		<div class="col-2 pl-0"><input id="test_expired_number" disabled class="d-inline-block form-control" type="number" value="" min="1" max="60"></div>
+	</div>
+	<div class="questions">
+	</div>
+	<div class="form-group row mt-3">
+		<div class="col-6">
+			<button id="addQuestion" type="button" class="btn btn-outline-success">Добавить вопрос
+			</button>
+		</div>
+		<div class="col-6 text-right">
+			<button id="saveTest" type="button" class="btn btn-primary">Сохранить тест</button>
+		</div>
+	</div>
+	<div class="form-group row mt-3">
+		<div class="col-6">
+		</div>
+		<div class="col-6 text-right">
+			<button id="back_to_catalog_button" type="button" class="btn btn-dark">Вернуться</button>
+		</div>
+	</div>
+
+</div>

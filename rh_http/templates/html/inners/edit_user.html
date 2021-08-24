@@ -1,0 +1,65 @@
+<div class="stage registration">
+	<form action="">
+		<div class="caption">Если Вы уже зарегистрированы, перейдите по вкладке Войти в меню слева.
+		</div>
+		<div class="header">Основные данные</div>
+		<span class="denied text-center mb-2"><ul id="edit_messages"></ul></span>
+
+		<div class="input">
+			<div class="title">Имя</div>
+			<input id="edit_first_name" type="text" placeholder="Имя" value="{{ user.first_name }}">
+		</div>
+		<div class="input">
+			<div class="title">Фамилия</div>
+			<input id="edit_second_name" type="text" placeholder="Фамилия" value="{{ user.second_name }}">
+		</div>
+		<div class="input">
+			<div class="title">Почта</div>
+			<input id="edit_email" type="text" placeholder="Почта" value="{{ user.email }}">
+		</div>
+		<div class="input">
+			<div class="title">Телефон</div>
+			<input id="edit_phone_number" type="text" placeholder="Телефон" value="{{ user.phone_number }}">
+		</div>
+		{% if user_role == 'super_admin' %}
+		<div class="input">
+			<div class="title">Организация</div>
+			<div id="organization_frame" style="width: 47.3%;">
+				<input id="edit_input_organization" hidden style="width:100%;" type="text" placeholder="Название ораганизации">
+				<select id="edit_select_organization" class="selectOrg" size="1" name="hero[]" >
+					{% for org in organizations %}
+						{% if org.id == user.organization_id %}
+							<option value="{{org.id}}" selected>{{ org.name }}</option>
+						{% else %}
+							<option value="{{org.id}}">{{ org.name }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			<div class="title newOrg">Новая организация</div>
+			<input id="edit_new_org" style="width: auto; height: auto;" type="checkbox" name="option1" value="a1">
+		</div>
+
+		<div class="input">
+			<div class="title newOrg">Администратор от организации</div>
+			{% if user.role == 'super_admin' or user.role == 'admin' %}
+				<input id="edit_like_admin" style="width: auto; height: auto;" type="checkbox" name="option1" value="a1" checked>
+			{% else %}
+				<input id="edit_like_admin" style="width: auto; height: auto;" type="checkbox" name="option1" value="a1">
+			{% endif %}
+		</div>
+		<div class="header">Ваш пароль</div>
+		<div class="input">
+			<div class="title">Пароль</div>
+			<input id="edit_password" type="password" placeholder="Введите пароль" value="{{user.password}}">
+		</div>
+		<div class="input">
+			<div class="title">Подтверждение</div>
+			<input id="edit_confirm_password" type="password" placeholder="Подтвердите пароль" value="{{user.password}}">
+		</div>
+		{% endif %}
+		<div class="buttons">
+			<button id="edit_submit" class="button black-button">Завершить регистрацию</button>
+		</div>
+	</form>
+</div>

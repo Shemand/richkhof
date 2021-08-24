@@ -1,0 +1,102 @@
+<div class="stage test test-media">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h4 style="font-family: 'Montserrat-SemiBold';">Фотосток</h4>
+        </div>
+    </div>
+    <div class="questions">
+        <div class="pl-4">
+            <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0">
+                <div class="pt-2 col-4"><h6><b>Фото</b></h6></div>
+                <div class="col-5 pt-2"><h6><b>URL</b></h6></div>
+                <div class="col">
+                    <a href="#modal_add_new_image" id="button_add_new_image"><button class="btn btn-dark">Добавить фото</button></a>
+                </div>
+            </div>
+
+
+            <div class="row mb-4 some_image">
+                <div class="col-4">
+                    <div class="stock">
+                        <a class="some_image_a" href="assets/app/img/samples/image.jpg" data-fancybox="images" data-caption="My caption">
+                            <img class="some_image_img" src="assets/app/img/samples/image.jpg" alt=""/>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-7 pt-3">
+                    <input class="some_image_input" readonly style="width:100%;" type="text" placeholder="url...">
+<!--                    <input class="some_image_button" readonly style="width:100%;" type="button" value="X">-->
+                </div>
+                <div class="col-1 pt-3">
+<!--                    <input class="some_image_input" readonly style="width:100%;" type="text" placeholder="url...">-->
+                    <input class="some_image_button" readonly style="width:100%;" type="button" value="X ">
+                </div>
+            </div>
+            <div class="row mb-4 some_image">
+                <div class="col-4">
+                    <div class="stock">
+                        <a class="some_image_a" href="assets/app/img/samples/image.jpg" data-fancybox="images" data-caption="My caption">
+                            <img class="some_image_img" src="assets/app/img/samples/image.jpg" alt=""/>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-7 pt-3">
+                    <input class="some_image_input" readonly style="width:100%;" type="text" placeholder="url...">
+<!--                    <input class="some_image_button" readonly style="width:100%;" type="button" value="X">-->
+                </div>
+                <div class="col-1 pt-3">
+<!--                    <input class="some_image_input" readonly style="width:100%;" type="text" placeholder="url...">-->
+                    <input class="some_image_button" readonly style="width:100%;" type="button" value="X ">
+                </div>
+            </div>
+            <div class="row mb-4 some_image">
+                <div class="col-4">
+                    <div class="stock">
+                        <a class="some_image_a" href="assets/app/img/samples/image.jpg" data-fancybox="images" data-caption="My caption">
+                            <img class="some_image_img" src="assets/app/img/samples/image.jpg" alt=""/>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-7 pt-3">
+                    <input class="some_image_input" readonly style="width:100%;" type="text" placeholder="url...">
+<!--                    <input class="some_image_button" readonly style="width:100%;" type="button" value="X">-->
+                </div>
+                <div class="col-1 pt-3">
+<!--                    <input class="some_image_input" readonly style="width:100%;" type="text" placeholder="url...">-->
+                    <input class="some_image_button" readonly style="width:100%;" type="button" value="X ">
+                </div>
+            </div>
+            <div class="row mb-4 some_image">
+                <div class="col-4">
+                    <div class="stock">
+                        <a class="some_image_a" href="assets/app/img/samples/image.jpg" data-fancybox="images" data-caption="My caption">
+                            <img class="some_image_img" src="assets/app/img/samples/image.jpg" alt=""/>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-7 pt-3">
+                    <input class="some_image_input" readonly style="width:100%;" type="text" placeholder="url...">
+<!--                    <input class="some_image_button" readonly style="width:100%;" type="button" value="X">-->
+                </div>
+                <div class="col-1 pt-3">
+<!--                    <input class="some_image_input" readonly style="width:100%;" type="text" placeholder="url...">-->
+                    <input class="some_image_button" readonly style="width:100%;" type="button" value="X ">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="bottom">
+            <div class="buttons">
+                <button id="prev_page_images" class="button">Назад</button>
+                <button id="next_page_images" class="button black-button">Далее</button>
+            </div>
+            <div id="queCount" class="counter"><span id="images_current_page">1</span>/<span id="images_all_pages">{{ all_pages }}</span></div>
+        </div>
+    </div>
+</div>
+<div id="modal_add_new_image" style="display:none;">
+    <p>
+        Загрузите файл: <input id="image_to_upload" type="file" name="file"><input id="button_to_upload_image" type="submit" value="Upload">
+    </p>
+</div>

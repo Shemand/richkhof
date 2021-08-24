@@ -1,0 +1,32 @@
+<div class="stage test test-media">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h4 style="font-family: 'Montserrat-SemiBold';">Каталог тестов</h4>
+        </div>
+    </div>
+    <div id="catalog_tests">
+        <div class="pl-4">
+            {% if tests_list != [] %}
+                <div class="row mb-4 pb-2 pt-1 mx-0">
+                    <div class="col-3"><span><b>Заголовок</b></span></div>
+                    <div class="col-5"><span><b>Описание</b></span></div>
+                    <div class="col-4"><span><b>Вопросов</b></span></div>
+                    <div class="col-4"><span><b>Действия</b></span></div>
+                </div>
+                <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0"></div>
+                {% for test in tests_list %}
+                    <div class="row mb-4 some_test">
+                        <div class="col-3 test_title">{{ test.title }}</div>
+                        <div class="col-5 test_description">{{ test.description }}</div>
+                        <div class="col-1 test_question_count">{{ test.questions_count }}</div>
+                        <div class="col-3 test_actions"><a href="{{ test.id }}" class="test_show">Просмотреть тест</a></div>
+                    </div>
+                    <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0"></div>
+                {% endfor %}
+            {% else %}
+                <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0"></div>
+                <h4>Сейчас нет доступных тестов</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>

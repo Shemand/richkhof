@@ -1,0 +1,39 @@
+<div class="stage test test-media">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h4 style="font-family: 'Montserrat-SemiBold';">Каталог статей</h4>
+        </div>
+    </div>
+    <div id="catalog_article">
+        <div class="pl-4">
+            {% if posts_list != [] %}
+                <div class="row mb-4 pb-2 pt-1 mx-0">
+                    <div class="col-4"><span><b>Заголовок</b></span></div>
+                    <div class="col-4"><span><b>Из Категории</b></span></div>
+                    <div class="col-4"><span><b>Действия</b></span></div>
+                </div>
+                <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0"></div>
+                {% for post in posts_list %}
+                    <div class="row mb-4 some_article">
+                        <div class="col-4 article_title"><a href="{{ post.id }}">{{ post.title }}</a></div>
+                        <div class="col-4 article_title">{{ post.from_category }}</div>
+                        <div class="col-4 article_actions">
+                            <span style="color: #737373;">Категория:</span>
+                            <select name="" class="article_category">
+                                {% for category in categories_list %}
+                                    <option value="{{ category.id }}"> {{ category.name }} </option>
+                                {% endfor %}
+                            </select>
+                            <br>
+                            <a href="{{ post.id }}" class="article_appoint">Добавить статью</a>
+                        </div>
+                    </div>
+                    <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0"></div>
+                {% endfor %}
+            {% else %}
+                <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0"></div>
+                <h4>Сейчас нет доступных статей</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>

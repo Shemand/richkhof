@@ -1,0 +1,63 @@
+<div class="stage text-center test test-media">
+    <h4 class="">Поздравляем, {{ username }}!</h4>
+    {% if (all_answers * 0.6) <= (right_answers) %}
+        <p>Вы успешно прошли тест, набрав <span id="right_answers">{{right_answers}}</span>/<span id="all_answers">{{all_answers}}</span> баллов!</p>
+    {% else %}
+        <p>Вы не прошли тест, набрав <span id="right_answers">{{right_answers}}</span>/<span id="all_answers">{{all_answers}}</span> баллов!</p>
+    {% endif %}
+    <button id="button_to_main_page" class="btn btn-dark">На главную</button>
+    <p></p>
+    {% if isImportant == False or username == 'Гость'%}
+        {% if questions != [] %}
+        <h4>Ваши неправильные ответ:</h4>
+        <table id="block_questions" class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Вопрос</th>
+                <th scope="col">Ответ пользователя</th>
+                <th scope="col">Правильный ответ</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for question in questions %}
+                <tr class="conclusion_question">
+                    <th class="conclusion_index" scope="row">{{ loop.index }}</th>
+                    <td class="conclusion_text">{{ question.text }}</td>
+                    <td class="conclusion_user_answer">{{ question.user_answer }}</td>
+                    <td class="conclusion_right_answers">
+                        {% for answer in question.right_answers %}
+                        <span class="conclusion_right_answer">{{answer}}</span>
+                        <br>
+                        {% endfor%}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <h2>Поздравляем! Вы ответили все ответы правильно!</h2>
+        {% endif %}
+    {% endif %}
+    {% if username == 'Гость' %}
+    <p></p>
+    <div id="feedback_form">
+        <form action="">
+            <div class="header">Сообщить о результате теста</div>
+            <p class="denied mb-2" id="feedback_auth_error"></p>
+            <input id="feedback_fio" type="text" placeholder="Ф.И.О.">
+            <input id="feedback_phone_number" type="text" placeholder="Мобильный телефон">
+            <input id="feedback_email_user" type="text" placeholder="Ваш адрес электронной почты">
+            <input id="feedback_email_admin" type="text" placeholder="Адрес электронной почты администратора">
+            <input id="feedback_submit" type="button" class="button black-button" value="Отправить">
+        </form>
+    </div>
+    {% endif %}
+</div>
+<!--<div class="stage text-center test test-media">-->
+<!--    <h4 class="">Увы, @name!</h4>-->
+<!--    <p>Вы не смогли пройти тест, набрав {{right_answers}}/{{all_answers}} баллов!</p>-->
+
+<!--    <p>Подготовьтесь лучше и как будете готовы - обратитесь к вашему администратору для повторного повторного решения-->
+<!--        теста. (Этот абзац нужен если тест контрольный)</p>-->
+<!--    <button class="btn btn-dark">Обучение</button>-->
+<!--</div>-->

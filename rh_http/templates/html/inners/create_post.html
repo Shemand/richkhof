@@ -1,0 +1,49 @@
+<div class="stage table-stage8">
+
+
+	<div class="row mb-3">
+		<div class="col text-center">
+			<h4 id="article_header" style="font-family: 'Montserrat-SemiBold';">Новая статья</h4>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="example-text-input" class="col-3 col-form-label">Название статьи</label>
+		<div class="col-9">
+			<input class="form-control" type="text" value="" placeholder="Введите название"
+				   id="articleNameToSave">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-3 col-form-label" for="exampleSelect1">Категория: </label>
+		<div class="col-9">
+			<input class="form-control" disabled id="articleCategory"/>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-3 col-form-label" for="exampleSelect1">Аудитория: </label>
+		<div class="col-9">
+			<select class="form-control" name="article_audience" id="article_audience">
+				<option value="closed">Для зарегистрированных пользователей</option>
+				<option value="notClosed">Для всех пользователей (В том числе Гостей)</option>
+			</select>
+		</div>
+	</div>
+	<div id="block_article_status" class="form-group row">
+		<label class="col-3 col-form-label" for="exampleSelect1">Статус: </label>
+		<div class="col-9">
+			<select class="form-control" name="" id="article_status">
+				<option value="notTradable">Статья доступна только вашей организации</option>
+				<option value="tradable">Другие организации могут использоватеть эту статью</option>
+			</select>
+		</div>
+	</div>
+	<textarea id="articleText" name="input"></textarea>
+	<div class="form-group row mt-3">
+		<div class="col-6">
+		</div>
+		<div class="col-6 text-right">
+			<button id="saveArticle" type="button" class="btn btn-primary">Сохранить</button>
+		</div>
+	</div>
+
+</div>

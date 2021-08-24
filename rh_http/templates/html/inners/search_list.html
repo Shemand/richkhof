@@ -1,0 +1,27 @@
+<div class="stage test test-media">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h4 style="font-family: 'Montserrat-SemiBold';">Каталог статей</h4>
+        </div>
+    </div>
+    <div id="catalog_article">
+        <div class="pl-4">
+            {% if posts_list != [] %}
+                <div class="row mb-4 pb-2 pt-1 mx-0">
+                    <div class="col"><h4>По вашему запросу найдено: {{ amount_posts }} статей</h4></div>
+                </div>
+                <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0"></div>
+                {% for post_id in posts %}
+                    <div data-post="{{ posts[post_id].id }}" class="search_record_block">
+                        <div class="row article_title"><h3 style="word-break: break-all;">{{ posts[post_id].title }}</h3></div>
+                        <div class="row article_text"><span style="word-break: break-all;">{{ posts[post_id].text }}</span></div>
+                    </div>
+                    <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0"></div>
+                {% endfor %}
+            {% else %}
+                <div style="border-bottom: 1px solid #737373;" class="row mb-4 pb-2 pt-1 mx-0"></div>
+                <h4>По вашему запросу статьи не найдены</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>
